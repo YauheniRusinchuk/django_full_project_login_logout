@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title> INDEX </title>
+    <link rel="stylesheet" href="{% static 'app/css/style.css' %}" />
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+  </head>
+  <body>
+    {% include 'app/menu.html' %}
+    <div class='main'>
+    {% block content %}
+    {% endblock content %}
+  </div>
+  <script src="{% static 'app/js/script.js' %}"></script>
+  <script src="{% static 'app/js/comment.js' %}"></script>
+  </body>
+</html>

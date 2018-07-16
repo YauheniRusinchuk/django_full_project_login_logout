@@ -1,0 +1,14 @@
+{% extends "app/base.html" %}
+
+
+{% block content %}
+
+  <div class='add_post_form'>
+    <form method="post" action="{% url 'addpost' %}" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{form}}
+      <button class="bnt" type="submit"> SUBMIT </button>
+    </form>
+  </div>
+
+{% endblock content %}

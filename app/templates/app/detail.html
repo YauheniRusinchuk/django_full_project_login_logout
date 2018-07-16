@@ -1,0 +1,47 @@
+{% extends "app/base.html" %}
+
+
+{% block content %}
+
+
+
+
+  <div class='detail_post'>
+    <div class="container_post_content">
+      <p>{{post.content}}</p>
+      {% if post.img %}
+        <img src="{{post.img.url}}" /> <br />
+      {% endif %}
+    </div>
+
+    <div class="content_user_profile_post">
+      <a href="{% url 'profile' fullname=post.user.last_name %}" class='user_post_detait'>{{post.user.first_name}} {{post.user.last_name}}</a>
+      <img src="{{post.user.user_profile.avatar.url}}"  width="100px" height="100px" />
+      <p>{{post.user.user_profile.description}}</p>
+  </div>
+
+  <div class="comments">
+    <p>ОСТАВЬ КОММЕНТАРИЙ ЁПТА!</p>
+    {% if comments %}
+      {% for comment in comments %}
+      <div class="comment">
+        <p>{{comment.text}}</p>
+      </div>
+      {% endfor %}
+    {% else %}
+        <div class="not_comments">
+          <p>  </p>
+        </div>
+    {% endif %}
+
+  </div>
+
+    <div class="form_comments">
+      <form method="POST" class="comment_form"  action="">
+        {% csrf_token %}
+        {{form}}
+        <button type="submit">добавить</button>
+      </form>
+    </div>
+  </div>
+{% endblock content %}

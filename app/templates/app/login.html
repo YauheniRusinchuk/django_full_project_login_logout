@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'app/css/style.css' %}" />
+</head>
+<body>
+  <div class="login">
+    {% if user.is_authenticated %}
+      <a href="{% url 'logout' %}"> ВЫЙТИ </a>
+    {% else %}
+      <form method="POST">
+          {% csrf_token %}
+          <p>
+              <label>Username</label>
+              <input type="text" name="username">
+          </p>
+          <p>
+              <label>Password</label>
+              <input type="password" name="password">
+          </p>
+          <button type="submit">ВОЙТИ</button>
+      </form>
+    {% endif %}
+  </div>
+</body>
+</html>

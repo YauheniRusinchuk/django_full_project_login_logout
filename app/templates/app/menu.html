@@ -1,0 +1,29 @@
+{% load static %}
+<div class='menu'>
+
+  <a class="glavnaia" href='/'>GOHOMEEPT</a>
+
+  <form method="POST" action="{% url 'search' %}">
+    {% csrf_token %}
+    <input type="search" name="search_text" class='search_form' placeholder="Поиск ..." />
+  </form>
+
+  <a class='about' href="{% url 'about' %}">
+    WHOISIT
+  </a>
+
+{% if user.is_authenticated %}
+  <div class='user_profile'>
+    <!--<a href="{% url 'profile' fullname=user.last_name   %}">
+      <p>{{user.first_name}} {{user.last_name}} </p>
+    </a> -->
+    {% if user.user_profile.avatar %}
+    <a href="{% url 'profile' fullname=user.last_name   %}">
+      <img src="{{user.user_profile.avatar.url}}" width="40px" height="40px" />
+    </a>
+    {% endif %}
+    <a class="add_post" href="{% url 'add' %}">ДОБАВИТЬ</a>
+  </div>
+{% else %}
+{% endif  %}
+</div>

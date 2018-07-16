@@ -1,0 +1,26 @@
+{% extends 'app/base.html' %}
+
+
+{% block content %}
+
+<div id="scroller">
+  <span>UP</span>
+</div>
+
+  <div class="contaiter_view_post">
+  {% for p in posts %}
+    <div class="view_post">
+      <div class="info_profile">
+        <img src="{{p.user.user_profile.avatar.url}}" width="50px" height="50px" />
+        <a href="{% url 'profile' fullname=p.user.last_name %}">{{p.user.first_name}} {{p.user.last_name}}</a>
+      </div>
+      <div class="post_content">
+        <a href="{% url 'detail' pk=p.pk %}">{{p.content}}</a> <br />
+        {% if p.img %}
+          <img src="{{MEDIA_URL}} {{p.img.url}}" /> <br />
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{% endblock content %}

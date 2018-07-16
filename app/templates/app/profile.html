@@ -1,0 +1,32 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+
+
+
+
+<div class='container_profile'>
+
+    <div class="profile">
+        <p> {{name}} </p>
+        <img src="{{avatar}}" width="200px" height="200px" />
+        <div class="description">
+          <p> {{description}} </p>
+        </div>
+    </div>
+
+    <div class="posts_list">
+      {% for p in posts %}
+        <div class="post_profile">
+          <a href='{% url 'detail' pk=p.pk %}'>{{p.content}}</a>
+          {% if p.img %}
+            <img src="{{p.img.url}}" /> <br />
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+
+</div>
+
+
+{% endblock content %}
